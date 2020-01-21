@@ -1,0 +1,18 @@
+session_name: ludwig
+start_directory: "."
+windows:
+- window_name: ludwig-cli
+  layout: even-horizontal
+  focus: true
+  shell_command_before:
+    - echo initial command
+  panes:
+    - shell_command: echo "started pane"
+      focus: true
+    - echo "other pane"
+- window_name: git
+  layout: even-horizontal
+  panes:
+    - shell_command: git repl
+      focus: true
+    - vifm .

@@ -480,7 +480,7 @@ output_features:
 
 ## Spoken Digit Speech Recognition
 
-This is a complete example of training an spoken digit speech recognition model on the "MNIST dataset of speech recognition". 
+This is a complete example of training an spoken digit speech recognition model on the "MNIST dataset of speech recognition".
 
 ## Download the free spoken digit dataset.
 
@@ -515,9 +515,9 @@ Now you should have `spoken_digit.csv` containing 2000 examples having the follo
 | .../speech_recog_digit_data/recordings/1_jackson_0.wav  | 1                                         |
 
 
-## Train a model. 
+## Train a model.
 
-From the directory where you have virtual environment with ludwig installed: 
+From the directory where you have virtual environment with ludwig installed:
 
 ```
 ludwig experiment \
@@ -1014,4 +1014,3 @@ output_features:
     name: fraud_label
     type: binary
 ```
-

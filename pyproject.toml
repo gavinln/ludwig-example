@@ -17,6 +17,7 @@ mypy = "^0.961"
 python-lsp-server = "^1.4.1"
 pylsp-mypy = "^0.5.8"
 vulture = "^2.4"
+pre-commit = "^2.19.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

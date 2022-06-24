@@ -1,24 +1,25 @@
-# Using Makefiles in Python
-# https://www.client9.com/self-documenting-makefiles/
+SCRIPT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-ifeq ($(OS),Windows_NT)
-    SHELL='c:/Program Files/Git/usr/bin/sh.exe'
-endif
-
-ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 .DEFAULT_GOAL=help
 .PHONY: help
 help:  ## help for this Makefile
 	@grep -E '^[a-zA-Z0-9_\-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: tmux
 tmux:  ## start tmux
 	tmuxp load tmux.yaml
 
-venv:  ## command to activate Python environment
-	echo source ~/.ludwig-example/bin/activate
+.PHONY: mypy
+mypy:  ## Use mypy type checker
+	python -m mypy --ignore-missing-imports --follow-imports=skip \
+		--check-untyped-defs .
 
-TEXT_CLF_DIR := $(ROOT_DIR)/python/01_text_classification
+.PHONY: black
+black:  ## apply Python black formatter
+	python -m black --line-length 79 .
+
+TEXT_CLF_DIR := $(SCRIPT_DIR)/python/01_text_classification
 
 text_classification:  ## text_classification prepare
 	curl -o $(TEXT_CLF_DIR)/reuters-allcats-6.zip http://boston.lti.cs.cmu.edu/classes/95-865-K/HW/HW2/reuters-allcats-6.zip

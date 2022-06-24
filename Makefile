@@ -34,6 +34,10 @@ text_classification_plot:  ## text classification plot
 		--training_statistics results/experiment_run/training_statistics.json \
 		--file_format png --output_directory results
 
+example-01:  ## 01-getting-started
+	python examples/01-getting-started/train-model.py
+
+
 
 # text_clf_dir
 # 01_text_classification/

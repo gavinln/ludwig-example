@@ -7,6 +7,7 @@ authors = ["Gavin Noronha <gavinln@hotmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 ludwig = "^0.5.2"
+dask = "^2022.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=5.2"
@@ -18,6 +19,7 @@ python-lsp-server = "^1.4.1"
 pylsp-mypy = "^0.5.8"
 vulture = "^2.4"
 pre-commit = "^2.19.0"
+ray = "^1.13.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

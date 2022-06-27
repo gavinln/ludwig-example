@@ -34,10 +34,27 @@ text_classification_plot:  ## text classification plot
 		--training_statistics results/experiment_run/training_statistics.json \
 		--file_format png --output_directory results
 
-example-01:  ## 01-getting-started
+.PHONY: 01-train
+01-train:  ## train model 01-getting-started
 	python examples/01-getting-started/train-model.py
 
+.PHONY: 01-predict
+01-predict:  ## predict 01-getting-started
+	python examples/01-getting-started/predict-model.py
 
+.PHONY: 01-viz-training
+01-viz-training:  ## visualize 01-getting-started training
+	python examples/01-getting-started/viz-model.py
+
+.PHONY: 01-compare-perf
+01-compare-perf:  ## compare 01-getting-started performance
+	python examples/01-getting-started/compare-perf.py
+
+.PHONY: clean
+clean:  # remove temporary files
+	rm -rf examples/01-getting-started/results
+	rm -rf examples/01-getting-started/predict
+	rm -rf examples/01-getting-started/visualizations
 
 # text_clf_dir
 # 01_text_classification/

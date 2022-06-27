@@ -6,8 +6,9 @@ authors = ["Gavin Noronha <gavinln@hotmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ludwig = "^0.5.2"
 dask = "^2022.6.0"
+ray = "^1.13.0"
+ludwig = {version = "0.5.2", extras = ["viz"]}
 
 [tool.poetry.dev-dependencies]
 pytest = ">=5.2"

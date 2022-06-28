@@ -34,6 +34,14 @@ text_classification_plot:  ## text classification plot
 		--training_statistics results/experiment_run/training_statistics.json \
 		--file_format png --output_directory results
 
+.PHONY: ray-start-head
+ray-start-head:  ## start ray head node
+	poetry run ray start --head --port 6380 --num-cpus 2
+
+.PHONY: ray-start-node
+ray-start-node:  ## start ray non-head node
+	poetry run ray start --address 127.0.0.1:6380 --num-cpus 12
+
 .PHONY: 01-train
 01-train:  ## train model 01-getting-started
 	python examples/01-getting-started/model-ops.py train-rt
@@ -54,36 +62,10 @@ text_classification_plot:  ## text classification plot
 01-compare-perf:  ## compare performance for 01-getting-started
 	python examples/01-getting-started/model-ops.py compare-perf
 
+.PHONY: 02-train
+02-train:  ## train model 02-higgs-tabnet
+	python examples/02-higgs-tabnet/model-ops.py train-higgs-small
+
 .PHONY: clean
 clean:  # remove temporary files
 	rm -rf examples/01-getting-started/output
-
-# text_clf_dir
-# 01_text_classification/
-# named_entity_dir
-# 02_named_entity_recognition_tagging/
-# 03_natural_language_understanding/
-# 04_machine_translation/
-# 05_chit_chat_dialogue_modeling_through_sequence2sequence/
-# 06_sentiment_analysis/
-# 07_image_classification/
-# 08_image_classification_mnist/
-# 09_download_the_mnist_dataset/
-# 10_create_train_and_test_csvs/
-# 11_train_a_model/
-# 12_image_captioning/
-# 13_one-shot_learning_with_siamese_networks/
-# 14_visual_question_answering/
-# 15_spoken_digit_speech_recognition/
-# 16_download_the_free_spoken_digit_dataset/
-# 17_create_an_experiment_csv/
-# 18_train_a_model/
-# 19_speaker_verification/
-# 20_kaggles_titanic_predicting_survivors/
-# 21_time_series_forecasting/
-# 22_time_series_forecasting_weather_data_example/
-# 23_movie_rating_prediction/
-# 24_multi_label_classification/
-# 25_multi_task_learning/
-# 26_simple_regression_fuel_efficiency_prediction/
-# 27_binary_classification_fraud_transactions_identification/

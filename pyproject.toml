@@ -10,6 +10,8 @@ dask = "^2022.6.0"
 ray = "^1.13.0"
 ludwig = {version = "0.5.2", extras = ["viz"]}
 fire = "^0.4.0"
+horovod = "^0.25.0"
+s3fs = "^2022.5.0"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=5.2"

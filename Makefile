@@ -36,25 +36,27 @@ text_classification_plot:  ## text classification plot
 
 .PHONY: 01-train
 01-train:  ## train model 01-getting-started
-	python examples/01-getting-started/train-model.py
+	python examples/01-getting-started/model-ops.py train-rt
+
+.PHONY: 01-train-zscore
+01-train-zscore:  ## train model 01-getting-started with zscore
+	python examples/01-getting-started/model-ops.py train-rt-zscore
 
 .PHONY: 01-predict
 01-predict:  ## predict 01-getting-started
-	python examples/01-getting-started/predict-model.py
+	python examples/01-getting-started/model-ops.py predict
 
 .PHONY: 01-viz-training
-01-viz-training:  ## visualize 01-getting-started training
-	python examples/01-getting-started/viz-model.py
+01-viz-training:  ## visualize training for 01-getting-started
+	python examples/01-getting-started/model-ops.py visualize-training
 
 .PHONY: 01-compare-perf
-01-compare-perf:  ## compare 01-getting-started performance
-	python examples/01-getting-started/compare-perf.py
+01-compare-perf:  ## compare performance for 01-getting-started
+	python examples/01-getting-started/model-ops.py compare-perf
 
 .PHONY: clean
 clean:  # remove temporary files
-	rm -rf examples/01-getting-started/results
-	rm -rf examples/01-getting-started/predict
-	rm -rf examples/01-getting-started/visualizations
+	rm -rf examples/01-getting-started/output
 
 # text_clf_dir
 # 01_text_classification/

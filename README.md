@@ -42,11 +42,28 @@ curl -OL https://ludwig-ai.github.io/ludwig-docs/0.5/data/rotten_tomatoes_test.c
 popd
 ```
 
-#### Train model
+#### Work with model
 
-make 01-getting-started
+1. Train model
+make 01-train
 
-#### Use model to predit
+2. Predict with the model
+make 01-predict
+
+3. Visualize training of the model
+make 01-viz-training
+
+4. OTHER
+
+### Troubleshooting
+
+1. Python package tkinter
+
+If you see the error `ModuleNotFoundError: No module named '_tkinter'`
+
+```
+brew install python-tk  # Mac
+```
 
 https://ludwig-ai.github.io/ludwig-docs/0.5/getting_started/prepare_data/
 
@@ -75,6 +92,16 @@ https://www.youtube.com/watch?v=nV3uWgmGjvY
 https://www.youtube.com/watch?v=74hqlj5k4Zg
 
 https://www.youtube.com/watch?v=BGRwMq0Wc5M
+
+#### Audio
+
+Interview with the creator of Ludwig
+
+https://www.pythonpodcast.com/ludwig-horovod-distributed-declarative-deep-learning-episode-341/
+
+* Data Scientists new to deep learning but familiar with regression, gradient boosting, etc.
+* Software engineers interested in machine learning
+* Changing from Tensorflow to PyTorch should not affect users of Ludwig
 
 #### Experts vs Novices
 

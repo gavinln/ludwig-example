@@ -126,3 +126,17 @@ https://www.pythonpodcast.com/ludwig-horovod-distributed-declarative-deep-learni
 
 * Novices use Ludwig to train, make predictions and serve models
 * Experts use Ludwig as a baseline.
+
+#### Other articles
+
+https://queue.acm.org/detail.cfm?id=3479315
+
+https://medium.com/pytorch/ludwig-on-pytorch-1241776417fc
+
+https://thesequence.substack.com/p/molino
+
+https://blog.dominodatalab.com/a-practitioners-guide-to-deep-learning-with-ludwig
+
+https://medium.com/pytorch/ludwig-on-pytorch-1241776417fc
+
+https://flaven.fr/2021/04/using-ludwig-introduction-to-deep-learning/

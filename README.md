@@ -62,7 +62,11 @@ https://ludwig-ai.github.io/ludwig-docs/0.5/getting_started/prepare_data/
 
 [910]: https://medium.com/pytorch/ludwig-on-pytorch-1241776417fc
 
+### Declarative Machine Learning with Ludwig
+
 #### Videos
+
+https://www.youtube.com/watch?v=BTkl_qc0Plc
 
 https://www.youtube.com/watch?v=5unXta3CYSw
 
@@ -71,3 +75,8 @@ https://www.youtube.com/watch?v=nV3uWgmGjvY
 https://www.youtube.com/watch?v=74hqlj5k4Zg
 
 https://www.youtube.com/watch?v=BGRwMq0Wc5M
+
+#### Experts vs Novices
+
+* Novices use Ludwig to train, make predictions and serve models
+* Experts use Ludwig as a baseline.

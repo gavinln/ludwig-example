@@ -161,3 +161,4 @@ cython_debug/
 
 # Example data files
 examples/01-getting-started/rotten_tomatoes.csv
+examples/01-getting-started/rotten_tomatoes_test.csv

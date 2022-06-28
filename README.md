@@ -45,15 +45,34 @@ popd
 #### Work with model
 
 1. Train model
+
+```
 make 01-train
+```
 
-2. Predict with the model
+2. Train alternative model
+
+```
+make 01-train-zscore
+```
+
+3. Predict with the model
+
+```
 make 01-predict
+```
 
-3. Visualize training of the model
+4. Visualize training of the model
+
+```
 make 01-viz-training
+```
 
-4. OTHER
+5. Compare performance of the two models
+
+```
+make 01-compare-perf
+```
 
 ### Troubleshooting
 

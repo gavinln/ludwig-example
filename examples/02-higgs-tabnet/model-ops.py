@@ -19,26 +19,6 @@ SCRIPT_DIR = pathlib.Path(__file__).parent.resolve()
 log = logging.getLogger(__name__)
 
 
-def move_preprocessed_input_files(
-    training_set, validation_set, test_set, output_directory
-):
-    training_file = training_set.data_hdf5_fp
-    validation_file = validation_set.data_hdf5_fp.replace(
-        '.training.hdf5', '.validation.hdf5'
-    )
-    test_file = test_set.data_hdf5_fp.replace('.training.hdf5', '.test.hdf5')
-    meta_file = training_set.data_hdf5_fp.replace(
-        '.training.hdf5', '.meta.json'
-    )
-    # move processed input to a separate directory
-    processed_input_dir = pathlib.Path(output_directory + '_preprocessed')
-    processed_input_dir.mkdir()
-    shutil.move(training_file, processed_input_dir)
-    shutil.move(test_file, processed_input_dir)
-    shutil.move(validation_file, processed_input_dir)
-    shutil.move(meta_file, processed_input_dir)
-
-
 def train(config_file, experiment_name):
     "train model"
     output_directory = SCRIPT_DIR / 'output' / 'results'
@@ -48,9 +28,6 @@ def train(config_file, experiment_name):
     higgs_data_file = (
         "s3://data-science.s3.liftoff.io/datascience/temp/higgs_small.parquet"
     )
-    # higgs_df.to_parquet(
-    #     higgs_data_file, engine="pyarrow", partition_cols="label"
-    # )
     higgs_ddf = dd.from_pandas(higgs_df, npartitions=30)
     higgs_ddf.to_parquet(higgs_data_file, engine="pyarrow")
 
@@ -72,31 +49,14 @@ def train(config_file, experiment_name):
     print('training_set_metadata keys {}'.format(training_set_metadata.keys()))
     print(f'{output_directory=}')
 
-    # move_preprocessed_input_files(
-    #     training_set, validation_set, test_set, output_directory
-    # )
-
-
-def train_rt():
-    "train model with rotten_tomatoes.yaml"
-    assert False
-    train(SCRIPT_DIR / 'rotten_tomatoes.yaml', 'rt')
-
 
 def train_higgs_small():
     "train model with higgs small dataset"
     train(SCRIPT_DIR / 'small_config.yaml', 'higgs_small')
 
 
-def train_rt_zscore():
-    "train model with rotten_tomatoes_zscore.yaml"
-    assert False
-    train(SCRIPT_DIR / 'rotten_tomatoes_zscore.yaml', 'rt_zscore')
-
-
 def predict():
     "predict using model"
-    assert False
     output_directory = SCRIPT_DIR / 'output' / 'predict'
     test_file = SCRIPT_DIR / 'rotten_tomatoes_test.csv'
     experiment_name = "rt"
@@ -112,20 +72,6 @@ def predict():
         skip_save_predictions=False,
         output_directory=output_directory,
     )
-
-
-def load_training_statistics(experiment_name, model_name):
-    assert False
-    experiment_dir = experiment_name + '_' + model_name
-
-    training_statistics = load_json(
-        SCRIPT_DIR
-        / 'output'
-        / 'results'
-        / experiment_dir
-        / 'training_statistics.json'
-    )
-    return training_statistics
 
 
 def visualize_training():
@@ -151,7 +97,6 @@ def visualize_training():
 
 def compare_perf():
     "compare performance of two models"
-    assert False
     test_file = SCRIPT_DIR / 'rotten_tomatoes_test.csv'
     output_directory = SCRIPT_DIR / 'output' / 'visualizations'
 
@@ -186,13 +131,18 @@ def compare_perf():
     )
 
 
-def test_s3_read_write():
-    df = pd.DataFrame({"a": [0, 0, 1, 1], "b": [1, 2, 1, 2]})
-    print(df)
-    s3_file = 's3://data-science.s3.liftoff.io/datascience/temp/example.csv'
-    df.to_csv(s3_file)
-    df2 = pd.read_csv(s3_file)
-    print(df2)
+def load_training_statistics(experiment_name, model_name):
+    assert False
+    experiment_dir = experiment_name + '_' + model_name
+
+    training_statistics = load_json(
+        SCRIPT_DIR
+        / 'output'
+        / 'results'
+        / experiment_dir
+        / 'training_statistics.json'
+    )
+    return training_statistics
 
 
 if __name__ == "__main__":
@@ -201,9 +151,8 @@ if __name__ == "__main__":
     fire.Fire(
         {
             "train-higgs-small": train_higgs_small,
-            # "train-rt-zscore": train_rt_zscore,
-            # "predict": predict,
-            # "visualize-training": visualize_training,
-            # "compare-perf": compare_perf,
+            "predict": predict,
+            "visualize-training": visualize_training,
+            "compare-perf": compare_perf,
         }
     )

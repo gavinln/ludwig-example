@@ -5,6 +5,8 @@ import shutil
 import fire
 import pandas as pd
 
+import dask.dataframe as dd
+
 from ludwig.api import LudwigModel
 from ludwig.datasets import higgs
 
@@ -41,14 +43,16 @@ def train(config_file, experiment_name):
     "train model"
     output_directory = SCRIPT_DIR / 'output' / 'results'
     model = LudwigModel(config=str(config_file))
-    higgs_df = higgs.load()
+    higgs_df = higgs.load().sample(frac=1)  # shuffle data
     higgs_data_file = SCRIPT_DIR / "higgs_small.parquet"
-    # higgs_data_file = (
-    #     "s3://data-science.s3.liftoff.io/datascience/temp/higgs_small.parquet"
-    # )
-    higgs_df.to_parquet(
-        higgs_data_file, engine="pyarrow", partition_cols="label"
+    higgs_data_file = (
+        "s3://data-science.s3.liftoff.io/datascience/temp/higgs_small.parquet"
     )
+    # higgs_df.to_parquet(
+    #     higgs_data_file, engine="pyarrow", partition_cols="label"
+    # )
+    higgs_ddf = dd.from_pandas(higgs_df, npartitions=30)
+    higgs_ddf.to_parquet(higgs_data_file, engine="pyarrow")
 
     (training_statistics, preprocessed_data, output_directory) = model.train(
         dataset=higgs_data_file,

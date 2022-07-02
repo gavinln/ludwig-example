@@ -1,0 +1,33 @@
+input_features:
+    - name: genres
+      type: set
+      preprocessing:
+          tokenizer: comma
+    - name: content_rating
+      type: category
+    - name: top_critic
+      type: binary
+    - name: runtime
+      type: number
+    - name: review_content
+      type: text
+      encoder: embed
+output_features:
+    - name: recommended
+      type: binary
+backend:
+    type: local
+trainer:
+  batch_size: 100
+  eval_batch_size: 500
+  epochs: 50
+  early_stop: 5
+  learning_rate: 0.001
+  optimizer:
+    type: adam
+  decay: true
+  decay_rate: 0.9
+  decay_steps: 2000
+  staircase: true
+  validation_field: combined
+  validation_metric: loss

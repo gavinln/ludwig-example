@@ -1,6 +1,7 @@
 import logging
 import pathlib
 import shutil
+import sys
 
 import fire
 import pandas as pd
@@ -24,6 +25,8 @@ def train(config_file, experiment_name):
     output_directory = SCRIPT_DIR / 'output' / 'results'
     model = LudwigModel(config=str(config_file))
     higgs_df = higgs.load().sample(frac=1)  # shuffle data
+    print(higgs_df.shape)
+    sys.exit()
     higgs_data_file = SCRIPT_DIR / "higgs_small.parquet"
     higgs_data_file = (
         "s3://data-science.s3.liftoff.io/datascience/temp/higgs_small.parquet"

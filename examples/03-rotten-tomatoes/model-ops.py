@@ -110,9 +110,13 @@ def train_manual(config_file, experiment_name):
         training_set_metadata,
     ) = preprocessed_data
     if test_set:
-        print(f'{training_set.size=}, {validation_set.size=}, {test_set.size=}')
+        print(
+            f'{training_set.size=}, {validation_set.size=}, {test_set.size=}'
+        )
     else:
-        print(f'{training_set.size=}, {validation_set.size=}, test_set is None')
+        print(
+            f'{training_set.size=}, {validation_set.size=}, test_set is None'
+        )
     print('training_set_metadata keys {}'.format(training_set_metadata.keys()))
     print(f'{output_dir=}')
 
@@ -156,7 +160,9 @@ def load_training_statistics(experiment_name, model_name):
     experiment_dir = experiment_name + '_' + model_name
 
     training_statistics = load_json(
-        get_ludwig_output_dir() / 'results' / experiment_dir
+        get_ludwig_output_dir()
+        / 'results'
+        / experiment_dir
         / 'training_statistics.json'
     )
     return training_statistics
@@ -254,50 +260,6 @@ def compare_perf():
         file_format="png",
     )
     print(f'{output_dir=}')
-
-
-def train_bak():
-    "train model"
-
-    config_file = SCRIPT_DIR / 'rotten_tomatoes.yaml'
-    experiment_name = 'rt'
-    df = pandas.read_csv(SCRIPT_DIR / 'rotten_tomatoes.csv').sample(frac=1)
-    output_directory = SCRIPT_DIR / 'output' / 'results'
-    print(f'data shape: {df.shape=}')
-    model = LudwigModel(config=str(config_file))
-
-    nrow = df.shape[0]
-    training_set_nrow = int(nrow * 8 / 10)
-    validation_set_nrow = int(nrow * 1 / 10)
-    test_set_nrow = nrow - training_set_nrow - validation_set_nrow
-
-    training_set = df.iloc[:training_set_nrow]
-    validation_set = df.iloc[
-        training_set_nrow : (training_set_nrow + validation_set_nrow)
-    ]
-    test_set = df.iloc[-test_set_nrow:]
-    # (training_statistics, preprocessed_data, output_directory) = model.train(
-    #     dataset=df,
-    #     experiment_name=experiment_name,
-    #     output_directory=str(output_directory),
-    # )
-    (training_statistics, preprocessed_data, output_directory) = model.train(
-        training_set=training_set,
-        validation_set=validation_set,
-        test_set=test_set,
-        experiment_name=experiment_name,
-        output_directory=str(output_directory),
-    )
-    print('training_statistics keys: {}'.format(training_statistics.keys()))
-    (
-        training_set,
-        validation_set,
-        test_set,
-        training_set_metadata,
-    ) = preprocessed_data
-    print(f'{training_set.size=}, {validation_set.size=}, {test_set.size=}')
-    print('training_set_metadata keys {}'.format(training_set_metadata.keys()))
-    print(f'{output_directory=}')
 
 
 if __name__ == "__main__":

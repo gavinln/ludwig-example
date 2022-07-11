@@ -31,7 +31,7 @@ output_features:
   - name: income
     type: category
 backend:
-    type: local
+  type: local
 # trainer:
 #   learning_rate: 0.05
 #   num_boost_round: 2

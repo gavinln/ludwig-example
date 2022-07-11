@@ -1,9 +1,5 @@
 import logging
 import pathlib
-import shutil
-import sys
-
-from typing import List
 
 import fire
 import pandas as pd
@@ -11,7 +7,6 @@ import pandas as pd
 from ludwig.api import LudwigModel
 from ludwig.utils.data_utils import load_json
 from ludwig.visualize import learning_curves
-from ludwig.visualize import compare_performance
 
 from ludwig.datasets import adult_census_income
 
@@ -54,8 +49,10 @@ def print_dataset_sizes(training_set, validation_set, test_set):
     name_data = {
         name: dataset for name, dataset in zip(names, datasets) if dataset
     }
-    name_shape = ['{}.shape={}'.format(
-        name, data.to_df().shape) for name, data in name_data.items()]
+    name_shape = [
+        '{}.shape={}'.format(name, data.to_df().shape)
+        for name, data in name_data.items()
+    ]
     print(' '.join(name_shape))
 
 
@@ -134,6 +131,6 @@ if __name__ == "__main__":
         {
             "get-dataset": get_dataset,
             "train-auto": train_auto_split,
-            "visualize-auto": visualize_auto
+            "visualize-auto": visualize_auto,
         }
     )

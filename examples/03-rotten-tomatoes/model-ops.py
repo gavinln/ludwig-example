@@ -48,6 +48,7 @@ def train_auto(config_file, experiment_name):
     df = pandas.read_csv(SCRIPT_DIR / 'rotten_tomatoes.csv')
     output_dir = get_ludwig_output_dir() / 'results'
     print(f'data shape: {df.shape=}')
+
     model = LudwigModel(config=str(config_file))
 
     (training_statistics, preprocessed_data, output_dir) = model.train(

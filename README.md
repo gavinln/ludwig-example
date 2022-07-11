@@ -111,20 +111,33 @@ popd
 1. Train model
 
 ```
-make 03-train
+make 03-train-auto
+make 03-train-manual
 ```
 
 2. Predict with the model
 
 ```
-make 03-predict
+make 03-predict-auto
+make 03-predict-manual
 ```
 
 3. Visualize training of the model
 
 ```
-make 01-viz-training
+make 03-visualize-auto
+make 03-visualize-manual
 ```
+
+4. Compare performance of auto and manual model
+
+```
+make 03-compare-perf
+```
+
+### 04-adult-census-income
+
+https://github.com/ludwig-ai/ludwig/tree/master/examples/lightgbm
 
 ### Troubleshooting
 

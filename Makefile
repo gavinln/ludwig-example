@@ -66,6 +66,35 @@ ray-start-node:  ## start ray non-head node
 02-train:  ## train model 02-higgs-tabnet
 	python examples/02-higgs-tabnet/model-ops.py train-higgs-small
 
+.PHONY: 03-train-auto
+03-train-auto:  ## train model 03-getting-started with auto data split
+	python examples/03-rotten-tomatoes/model-ops.py train-auto
+
+.PHONY: 03-train-manual
+03-train-manual:  ## train model 03-getting-started with manual data split
+	python examples/03-rotten-tomatoes/model-ops.py train-manual
+
+.PHONY: 03-predict-auto
+03-predict-auto:  ## predict 03-getting-started with auto split data
+	python examples/03-rotten-tomatoes/model-ops.py predict-auto
+
+.PHONY: 03-predict-manual
+03-predict-manual:  ## predict 03-getting-started with manual split data
+	python examples/03-rotten-tomatoes/model-ops.py predict-manual
+
+.PHONY: 03-visualize-auto
+03-visualize-auto:  ## visualize 03-rotten-tomatoes for auto data
+	python examples/03-rotten-tomatoes/model-ops.py visualize-auto
+
+.PHONY: 03-visualize-manual
+03-visualize-manual:  ## visualize 03-rotten-tomatoes for manual data
+	python examples/03-rotten-tomatoes/model-ops.py visualize-manual
+
+.PHONY: 03-compare-perf
+03-compare-perf:  ## compare performance for 03-rotten-tomatoes
+	python examples/03-rotten-tomatoes/model-ops.py compare-perf
+
 .PHONY: clean
 clean:  # remove temporary files
 	rm -rf examples/01-getting-started/output
+	rm -rf examples/03-getting-started/output

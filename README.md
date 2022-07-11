@@ -74,6 +74,58 @@ make 01-viz-training
 make 01-compare-perf
 ```
 
+### 03-getting-started
+
+This examples using the Rotten Tomatoes dataset which is a CSV file with a
+variety of feature types and a binary target. It explicitly specifies the
+train, validation and test sets.
+
+#### Setup data
+
+1. Change to the example root directory
+
+```
+pushd examples/03-getting-started/
+```
+
+2. Download the training data
+
+```
+curl -OL https://ludwig-ai.github.io/ludwig-docs/0.5/data/rotten_tomatoes.csv
+```
+
+3. Download the test data
+
+```
+curl -OL https://ludwig-ai.github.io/ludwig-docs/0.5/data/rotten_tomatoes_test.csv
+```
+
+3. Change to the project root
+
+```
+popd
+```
+
+#### Work with model
+
+1. Train model
+
+```
+make 03-train
+```
+
+2. Predict with the model
+
+```
+make 03-predict
+```
+
+3. Visualize training of the model
+
+```
+make 01-viz-training
+```
+
 ### Troubleshooting
 
 1. Python package tkinter
